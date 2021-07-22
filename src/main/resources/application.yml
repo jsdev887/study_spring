@@ -22,10 +22,10 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create #프로젝트 할 때마다 새로 생기기 때문에 나중에 update로 바꾸어야 함 
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      use-new-id-generator-mappings: false
+      use-new-id-generator-mappings: false #jpa가 제공하는 기본 넘버링 전략을 따라가지 않는다. 
     show-sql: true
     properties:
       hibernate.format_sql: true
