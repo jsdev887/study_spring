@@ -33,3 +33,14 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+      
+logging:
+  level:
+    org.springframework.web : debug
+    sql: error
+    jdbc: off
+    jdbc.sqlonly: debug 
+ # file : ${user.home}/logs/product.log
+  file.max-history: 9999999
+  file.max-size : 100MB
+
