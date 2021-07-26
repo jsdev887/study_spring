@@ -1,3 +1,50 @@
+spring:
+  profiles:
+    group:
+      "local": "testdb,common"
+
+---
+spring:
+  profiles:
+    group:
+      "dev":  "testdb,common"
+
+
+---
+spring:
+  profiles:
+    group:
+      "prod": "proddb,common"
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "proddb"
+  datasource:
+    url: "jdbc:mysql://service-server/web"
+    username: "proddbuser"
+    password: "proddbpass"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "testdb"
+  datasource:
+    url: "jdbc:mysql://test-server/test"
+    username: "dbuser"
+    password: "dbpass"
+ 
+---
+spring:
+  config:
+    activate:
+      on-profile: "common"
+      
+---
+
 server:
   port: 8000
   servlet:
