@@ -29,4 +29,5 @@ public class TempControllerTest {
 		// 풀네임: /WEB-INF/views/test.jsp
 		return "test";
 	}
+	
 }
