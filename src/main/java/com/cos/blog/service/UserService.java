@@ -21,16 +21,17 @@ public class UserService {
     }
 
     public void save(TempUser user) {
-        Optional<TempUser> aleadyUser = repository.findByEmail(user.getEmail());
-        if( aleadyUser.isPresent()){
-            throw new EmailDuplicateException("email duplicated",ErrorCode.EMAIL_DUPLICATION);
+        Optional<TempUser> alreadyUser = repository.findByEmail(user.getEmail());
+       
+        if( alreadyUser.isPresent()) {
+           throw new EmailDuplicateException("email duplicated",ErrorCode.EMAIL_DUPLICATION);        	
         }
      
         repository.save(user);
     }
 
-    public Optional<TempUser> findUserByEmail(String email){
-        Optional<TempUser> aleadyUser = repository.findByEmail(email);
-        return aleadyUser;
-    }
+//    public Optional<TempUser> findUserByEmail(String email){
+//        Optional<TempUser> alreadyUser = repository.findByEmail(email);
+//        return alreadyUser;
+//    }
 }
