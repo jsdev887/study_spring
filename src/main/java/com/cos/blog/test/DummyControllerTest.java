@@ -1,7 +1,13 @@
 package com.cos.blog.test;
 
+import java.util.List;
 import java.util.function.Supplier;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +26,29 @@ public class DummyControllerTest {
 	@Autowired //의존성 주입(DI)
 	private UserRepository userRepository;
 	
+	// 유저 전체를 다 호출하기 때문에 파라미터(id 값 등)을 따로 받을 필요 없음.
+	//http://localhost:8000/blog/dummy/user
+	@GetMapping("/dummy/users")
+	public List<User> list() {
+		return userRepository.findAll();
+	}
+	
+	// 한 페이지당 2건의 데이터를 리턴받아 볼 예정 
+	@GetMapping("/dummy/user")
+//	public Page<User> pagList(@PageableDefault(size=2, sort="id", direction = Sort.Direction.DESC) Pageable pageable) {
+//		Page<User> users = userRepository.findAll(pageable);
+//		return users;
+//	}
+	public List<User> pagList(@PageableDefault(size=2, sort="id", direction = Sort.Direction.DESC) Pageable pageable) {
+		Page<User> pagingUser = userRepository.findAll(pageable);
+		
+		if(pagingUser.isFirst()) {
+			// 이런식으로 예외처리도 가능 
+		}
+		
+		List<User> users = pagingUser.getContent();
+		return users;
+	}
 	
 	// {id} 주소로 파라메터를 전달받을 수 있음.
 	//http://localhost:8000/blog/dummy/user/3
