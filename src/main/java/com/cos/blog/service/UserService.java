@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cos.blog.error.EmailDuplicateException;
-import com.cos.blog.error.ErrorCode;
+import com.cos.blog.handler.EmailDuplicateException;
+import com.cos.blog.handler.ErrorCode;
 import com.cos.blog.model.TempUser;
 import com.cos.blog.respository.TempUserRepository;
 

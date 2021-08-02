@@ -1,4 +1,4 @@
-package com.cos.blog.error;
+package com.cos.blog.handler;
 
 public class UserException extends RuntimeException {
 
