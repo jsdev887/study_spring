@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest 
+    ports:
+      - 3036:3306
+    environment:
+      - MYSQL_DATABASE=testdb
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=cos
+    container_name: temp_mysql
+    networks:
+      - spring-network
+  blog:
+    build: .
+    image: temp_blog
+    restart: on-failure
+    container_name: temp_blog
+    ports:
+      - 8000:8000
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testdb?useSSL=false&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: cos
+    depends_on: 
+      - mysql
+    networks:
+      - spring-network
+networks:
+ spring-network:
