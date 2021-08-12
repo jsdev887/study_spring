@@ -60,23 +60,32 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
       
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
-    username: cos
-    password: cos1234
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
+#    username: cos
+#    password: cos1234
     
   jpa:
-    open-in-view: true
+#    open-in-view: true
+#    hibernate:
+#      ddl-auto: create #프로젝트 할 때마다 새로 생기기 때문에 나중에 update로 바꾸어야 함 
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      use-new-id-generator-mappings: false #jpa가 제공하는 기본 넘버링 전략을 따라가지 않는다. 
+#    show-sql: true
+#    properties:
+#      hibernate.format_sql: true
     hibernate:
-      ddl-auto: update #프로젝트 할 때마다 새로 생기기 때문에 나중에 update로 바꾸어야 함 
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      use-new-id-generator-mappings: false #jpa가 제공하는 기본 넘버링 전략을 따라가지 않는다. 
+      ddl-auto: update
+    generate-ddl: true
     show-sql: true
     properties:
-      hibernate.format_sql: true
-
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    h2:
+      console:
+        enabled: true
   jackson:
     serialization:
       fail-on-empty-beans: false
