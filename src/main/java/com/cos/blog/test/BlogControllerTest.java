@@ -28,5 +28,5 @@ public class BlogControllerTest {
 		return appError;		
 	}
 	
-	
+	// jenkins test
 }
